@@ -15,16 +15,16 @@ class MenuViewController : UIViewController, Trackable {
     var didTapSupport: (() -> Void)?
     var didTapSettings: (() -> Void)?
     var didTapLock: (() -> Void)?
-    var didTapBuy: (() -> Void)?
+    var didTapSend: (() -> Void)?
 
     //MARK: - Private
     fileprivate let buttonHeight: CGFloat = 72.0
     fileprivate let buttons: [MenuButton] = {
-        let types: [MenuButtonType] = [.security, .support, .settings, .lock/*, .buy */]
+        let types: [MenuButtonType] = [.security, .support, .settings, .lock, .spend ]
         return types.flatMap {
-            //if $0 == .buy && !BRAPIClient.featureEnabled(.buyBitcoin) {
-            //    return nil
-            //}
+            if $0 == .spend && !BRAPIClient.featureEnabled(.spendStrayacoin) {
+                return nil
+            }
             return MenuButton(type: $0)
         }
     }()
@@ -55,9 +55,9 @@ class MenuViewController : UIViewController, Trackable {
 
         view.backgroundColor = .white
 
-        //if BRAPIClient.featureEnabled(.buyBitcoin) {
-        //    saveEvent("menu.buyBitcoinIsVisible")
-        //}
+        if BRAPIClient.featureEnabled(.spendStrayacoin) {
+            saveEvent("menu.spendStrayacoinIsVisible")
+        }
     }
 
     @objc private func didTapButton(button: MenuButton) {
@@ -70,9 +70,8 @@ class MenuViewController : UIViewController, Trackable {
             didTapSettings?()
         case .lock:
             didTapLock?()
-        //case .buy:
-        //    saveEvent("menu.didTapBuyBitcoin")
-        //    didTapBuy?()
+        case .spend:
+            didTapSend?()
         }
     }
 }

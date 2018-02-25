@@ -306,9 +306,9 @@ class ModalPresenter : Subscriber, Trackable {
                 self?.presentSettings()
             }
         }
-        menu.didTapBuy = { [weak self, weak menu] in
+        menu.didTapSend = { [weak self, weak menu] in
             menu?.dismiss(animated: true, completion: {
-                self?.presentBuyController("/buy")
+                self?.presentSpendController("/support")
             })
         }
         return root
@@ -440,7 +440,7 @@ class ModalPresenter : Subscriber, Trackable {
        // if BRAPIClient.featureEnabled(.earlyAccess) {
        //     rows["StrayaWallet"]?.insert(Setting(title: S.Settings.earlyAccess, callback: {
        //         settingsNav.dismiss(animated: true, completion: {
-       //             self.presentBuyController("/ea")
+       //            self.presentBuyController("/ea")
        //         })
        //     }), at: 1)
        // }
@@ -591,7 +591,7 @@ class ModalPresenter : Subscriber, Trackable {
         vc.present(paperPhraseNavigationController, animated: true, completion: nil)
     }
 
-    private func presentBuyController(_ mountPoint: String) {
+    private func presentSpendController(_ mountPoint: String) {
         guard let walletManager = self.walletManager else { return }
         let vc: BRWebViewController
         

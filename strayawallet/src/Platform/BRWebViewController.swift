@@ -68,8 +68,8 @@ import WebKit
     var indexUrl: URL {
         switch mountPoint {
         // MARK (losh11): - cleanup switch below
-            case "/buy":
-                let addr = "https://api.strayawallet.com/buy?address=" + (walletManager.wallet?.receiveAddress)!
+            case "/spend":
+                let addr = "https://api.strayawallet.com/support" + (walletManager.wallet?.receiveAddress)!
                 return URL(string: addr)!
             case "/support":
                 return URL(string: "https://api.strayawallet.com/support")!
