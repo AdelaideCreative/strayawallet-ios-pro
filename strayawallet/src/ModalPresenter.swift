@@ -306,7 +306,7 @@ class ModalPresenter : Subscriber, Trackable {
                 self?.presentSettings()
             }
         }
-        menu.didTapSend = { [weak self, weak menu] in
+        menu.didTapSpend = { [weak self, weak menu] in
             menu?.dismiss(animated: true, completion: {
                 self?.presentSpendController("/support")
             })

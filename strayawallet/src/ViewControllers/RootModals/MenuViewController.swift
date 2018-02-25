@@ -15,7 +15,7 @@ class MenuViewController : UIViewController, Trackable {
     var didTapSupport: (() -> Void)?
     var didTapSettings: (() -> Void)?
     var didTapLock: (() -> Void)?
-    var didTapSend: (() -> Void)?
+    var didTapSpend: (() -> Void)?
 
     //MARK: - Private
     fileprivate let buttonHeight: CGFloat = 72.0
@@ -71,7 +71,7 @@ class MenuViewController : UIViewController, Trackable {
         case .lock:
             didTapLock?()
         case .spend:
-            didTapSend?()
+            didTapSpend?()
         }
     }
 }
